@@ -99,7 +99,7 @@ def transformar_datos(datos_crudos, tasa_brl_clp):
     # Unimos el pasado (histórico) con el futuro (predicción) en una sola tabla maestra
     df_final_ventas = pd.concat([ventas_diarias, prediccion_formato], ignore_index=True)
 
-    print("✅ ¡Transformación y predicción finalizadas con éxito!")
+    print("¡Transformación y predicción finalizadas con éxito!")
 
     # Retornamos un diccionario con las 3 tablas listas para inyectarse en la Base de Datos
     return {
