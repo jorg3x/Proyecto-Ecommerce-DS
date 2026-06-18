@@ -33,13 +33,13 @@ CREATE TABLE IF NOT EXISTS productos (
 CREATE TABLE IF NOT EXISTS predicciones_ventas_diarias (
     fecha_venta DATE PRIMARY KEY,
     total_pedidos INT NOT NULL,
-    ingresos_brl NUMERIC(12, 2) NOT NULL,
-    ingresos_usd NUMERIC(12, 2) NOT NULL,
-    tasa_cambio_usd_brl NUMERIC(10, 4) NOT NULL,
+    ingresos_brl NUMERIC(15, 2) NOT NULL,
+    ingresos_clp NUMERIC(15, 2) NOT NULL,
+    tasa_cambio_clp_brl NUMERIC(10, 4) NOT NULL,
     es_prediccion BOOLEAN DEFAULT FALSE,
-    ingresos_predichos_usd NUMERIC(12, 2),
-    prediccion_limite_superior_usd NUMERIC(12, 2),
-    prediccion_limite_inferior_usd NUMERIC(12, 2)
+    ingresos_predichos_clp NUMERIC(15, 2),
+    prediccion_limite_superior_usd NUMERIC(15, 2),
+    prediccion_limite_inferior_usd NUMERIC(15, 2)
 );
 
 -- Índices optimizados para acelerar las consultas de la API y Streamlit
