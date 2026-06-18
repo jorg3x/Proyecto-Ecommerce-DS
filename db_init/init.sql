@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS predicciones_ventas_diarias (
     tasa_cambio_clp_brl NUMERIC(10, 4) NOT NULL,
     es_prediccion BOOLEAN DEFAULT FALSE,
     ingresos_predichos_clp NUMERIC(15, 2),
-    prediccion_limite_superior_usd NUMERIC(15, 2),
-    prediccion_limite_inferior_usd NUMERIC(15, 2)
+    prediccion_limite_superior_clp NUMERIC(15, 2),
+    prediccion_limite_inferior_clp NUMERIC(15, 2)
 );
 
 -- Índices optimizados para acelerar las consultas de la API y Streamlit
