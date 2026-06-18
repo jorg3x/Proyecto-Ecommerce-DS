@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # 1. Base de Datos Relacional (PostgreSQL)
+  postgres_db:
+    image: postgres:15
+    container_name: ecommerce_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: adminpassword
+      POSTGRES_DB: olist_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Este volumen ejecuta el script init.sql automáticamente al crear la BD
+      - ./db_init:/docker-entrypoint-initdb.d
+    networks:
+      - data_network
+
+  # 2. API REST (FastAPI)
+  fastapi_app:
+    build: 
+      context: ./api
+    container_name: ecommerce_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres_db
+    environment:
+      - DATABASE_URL=postgresql://admin:adminpassword@postgres_db:5432/olist_db
+    networks:
+      - data_network
+
+  # 3. Dashboard Interactivo (Streamlit)
+  streamlit_app:
+    build: 
+      context: ./dashboard
+    container_name: ecommerce_dashboard
+    ports:
+      - "8501:8501"
+    depends_on:
+      - fastapi_app
+    environment:
+      - API_URL=http://fastapi_app:8000
+    networks:
+      - data_network
+
+# Definimos los volúmenes y redes
+volumes:
+  postgres_data:
+
+networks:
+  data_network:
+    driver: bridge  

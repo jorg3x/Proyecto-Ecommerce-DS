@@ -1,0 +1,16 @@
+# Entornos virtuales
+env/
+venv/
+.env
+
+# Archivos de caché de Python
+__pycache__/
+*.pyc
+
+# Datos pesados (¡Nunca subir CSVs a GitHub!)
+data/raw/
+data/processed/
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
